@@ -78,18 +78,24 @@ src/
 ## Getting Started
 
 1. Clone the repository:
+```
    git clone https://github.com/kasbadji/Expense-Tracker.git
    cd Expense-Tracker
-
+```
 2. Install dependencies:
+```
    npm install
-
+```
 3. Run the development server:
+```
    npm run dev
-
+```
 4. Switch branches to compare implementations:
    # View the monolithic bad code version
+```
    git checkout poor-code
-
+```
    # View the refactored clean code version
+```  
    git checkout clean-code
+```
