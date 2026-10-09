@@ -1,36 +1,95 @@
 # Expense Tracker — Demonstration Before & After Clean Code
 
-Un projet d'application de gestion de dépenses développé avec **React** et **Vite**, conçu pour illustrer concrètement l'impact des principes du **Clean Code** et de la **refactorisation logicielle**.
+An expense tracker application built with React and Vite, designed to demonstrate the practical impact of Clean Code principles and software refactoring.
 
-Ce dépôt comporte deux branches distinctes permettant de comparer côte à côte une implémentation monolithique non structurée et une architecture modulaire et maintenable.
+This repository contains two distinct branches allowing a side-by-side comparison between an unstructured monolithic implementation and a maintainable, modular architecture.
 
 ---
 
-## Branches du Projet
+## Project Branches
 
-| Branche | Description |
+| Branch | Description |
 | :--- | :--- |
-| **`poor-code`** | **Version Monolithique :** Tout le code, la logique d'état et le rendu sont regroupés dans un unique fichier `App.jsx`. Nommage cryptique et logique impérative. |
-| **`clean-code`** | **Version Refactorisée :** Composants modulaires (CSS Modules), séparation des responsabilités (SRP), helpers utilitaires et nommage explicite. |
+| poor-code / main | Monolithic Version: All code, state management, and UI rendering squeezed into a single App.jsx file. Cryptic naming and imperative logic. |
+| clean-code | Refactored Version: Modular components (CSS Modules), Single Responsibility Principle (SRP), utility helpers, and explicit naming. |
 
 ---
 
-## 🔍 Analyse Comparative : Bad Code vs Clean Code
+## Comparative Analysis: Bad Code vs. Clean Code
 
-### 1. Structure et Responsabilité Unique (SRP)
-* **Poor Code :** Le composant principal gère simultanément l'état du formulaire, les filtres de catégories, la logique de calcul financier, la validation et tout le rendu JSX.
-* **Clean Code :** Découpage en composants spécialisés et indépendants :
-  * `Header` — En-tête de l'application.
-  * `SummaryCards` — Affichage du solde, des revenus et des dépenses.
-  * `TransactionForm` — Gestion et validation de la saisie d'une transaction.
-  * `TransactionList` — Affichage de l'historique et filtrage par catégorie.
+### 1. Structure & Single Responsibility Principle (SRP)
+* Poor Code: The root component simultaneously manages form state, category filters, financial calculation logic, validation, and full JSX rendering.
+* Clean Code: Decomposed into specialized, independent components:
+  * Header — Application header.
+  * SummaryCards — Balance, income, and expense totals display.
+  * TransactionForm — Transaction input management and validation.
+  * TransactionList — History table display and category filtering.
 
-### 2. Lisibilité et Nommage
-* **oor Code :** Variables et fonctions aux noms opaques (`a`, `b`, `c`, `d`, `e`, `f`, `g()`, `h()`, `i`, `j`, `k`, `l`).
-* **Clean Code :** Identifiants explicites et auto-documentés (`transactions`, `selectedCategory`, `handleAddTransaction`, `formatCurrency`).
+### 2. Readability & Naming Conventions
+* Poor Code: Cryptic variable and function names (a, b, c, d, e, f, g(), h(), i, j, k, l).
+* Clean Code: Explicit, self-documenting identifiers (transactions, selectedCategory, handleAddTransaction, formatCurrency).
 
-### 3. Logique de Calcul
-* **Poor Code :** Utilisation d'une boucle impérative `for` manuelle pour calculer les totaux :
-  ```javascript
+### 3. Calculation Logic
+* Poor Code: Uses a manual, imperative for loop to accumulate financial totals:
   let i = 0, j = 0;
   for (let k = 0; k < a.length; k++) { ... }
+* Clean Code: Declarative approach leveraging modern higher-order array methods (.filter(), .reduce()):
+  const totalIncome = transactions
+    .filter((t) => t.type === "Income")
+    .reduce((sum, t) => sum + t.amount, 0);
+
+### 4. Styles & CSS Modularity
+* Poor Code: Monolithic global CSS file susceptible to selector conflicts and class naming collisions.
+* Clean Code: Style encapsulation using CSS Modules (*.module.css) co-located with each component.
+
+---
+
+## Project Architecture (clean-code branch)
+
+src/
+├── components/
+│   ├── Header.jsx
+│   ├── Header.module.css
+│   ├── SummaryCards.jsx
+│   ├── SummaryCards.module.css
+│   ├── TransactionForm.jsx
+│   ├── TransactionForm.module.css
+│   ├── TransactionList.jsx
+│   └── TransactionList.module.css
+├── constants/
+│   └── categories.js
+├── utils/
+│   └── formatters.js
+├── App.jsx
+├── index.css
+└── main.jsx
+
+---
+
+## Tech Stack
+
+* Framework: React
+* Build Tool: Vite
+* Styling: CSS Modules
+* Version Control: Git & GitHub
+
+---
+
+## Getting Started
+
+1. Clone the repository:
+   git clone https://github.com/kasbadji/Expense-Tracker.git
+   cd Expense-Tracker
+
+2. Install dependencies:
+   npm install
+
+3. Run the development server:
+   npm run dev
+
+4. Switch branches to compare implementations:
+   # View the monolithic bad code version
+   git checkout poor-code
+
+   # View the refactored clean code version
+   git checkout clean-code
