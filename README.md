@@ -1,16 +1,36 @@
-# React + Vite
+# Expense Tracker — Demonstration Before & After Clean Code
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Un projet d'application de gestion de dépenses développé avec **React** et **Vite**, conçu pour illustrer concrètement l'impact des principes du **Clean Code** et de la **refactorisation logicielle**.
 
-Currently, two official plugins are available:
+Ce dépôt comporte deux branches distinctes permettant de comparer côte à côte une implémentation monolithique non structurée et une architecture modulaire et maintenable.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Branches du Projet
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Branche | Description |
+| :--- | :--- |
+| **`poor-code`** / **`main`** | **Version Monolithique :** Tout le code, la logique d'état et le rendu sont regroupés dans un unique fichier `App.jsx`. Nommage cryptique et logique impérative. |
+| **`clean-code`** | **Version Refactorisée :** Composants modulaires (CSS Modules), séparation des responsabilités (SRP), helpers utilitaires et nommage explicite. |
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## 🔍 Analyse Comparative : Bad Code vs Clean Code
+
+### 1. Structure et Responsabilité Unique (SRP)
+* **Poor Code :** Le composant principal gère simultanément l'état du formulaire, les filtres de catégories, la logique de calcul financier, la validation et tout le rendu JSX.
+* **Clean Code :** Découpage en composants spécialisés et indépendants :
+  * `Header` — En-tête de l'application.
+  * `SummaryCards` — Affichage du solde, des revenus et des dépenses.
+  * `TransactionForm` — Gestion et validation de la saisie d'une transaction.
+  * `TransactionList` — Affichage de l'historique et filtrage par catégorie.
+
+### 2. Lisibilité et Nommage
+* **oor Code :** Variables et fonctions aux noms opaques (`a`, `b`, `c`, `d`, `e`, `f`, `g()`, `h()`, `i`, `j`, `k`, `l`).
+* **Clean Code :** Identifiants explicites et auto-documentés (`transactions`, `selectedCategory`, `handleAddTransaction`, `formatCurrency`).
+
+### 3. Logique de Calcul
+* **Poor Code :** Utilisation d'une boucle impérative `for` manuelle pour calculer les totaux :
+  ```javascript
+  let i = 0, j = 0;
+  for (let k = 0; k < a.length; k++) { ... }
