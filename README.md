@@ -45,7 +45,7 @@ This repository contains two distinct branches allowing a side-by-side compariso
 ---
 
 ## Project Architecture (clean-code branch)
-
+```
 src/
 ├── components/
 │   ├── Header.jsx
@@ -63,7 +63,7 @@ src/
 ├── App.jsx
 ├── index.css
 └── main.jsx
-
+```
 ---
 
 ## Tech Stack
