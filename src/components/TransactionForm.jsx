@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CATEGORIES } from "../constants/categories";
+import styles from "./TransactionForm.module.css";
 
 export default function TransactionForm({ onAddTransaction }) {
   const [description, setDescription] = useState("");
@@ -28,10 +29,10 @@ export default function TransactionForm({ onAddTransaction }) {
   }
 
   return (
-    <section className="panel">
+    <section className={styles.panel}>
       <h2>Add Transaction</h2>
 
-      <form className="form" onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Description"
@@ -61,7 +62,7 @@ export default function TransactionForm({ onAddTransaction }) {
           ))}
         </select>
 
-        <button type="submit" className="add-button">
+        <button type="submit" className={styles.addButton}>
           + Add
         </button>
       </form>

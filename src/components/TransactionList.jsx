@@ -1,5 +1,6 @@
 import { CATEGORIES } from "../constants/categories";
 import { formatCurrency } from "../utils/formatters";
+import styles from "./TransactionList.module.css";
 
 export default function TransactionList({
   transactions,
@@ -8,8 +9,8 @@ export default function TransactionList({
   onDeleteTransaction,
 }) {
   return (
-    <section className="panel">
-      <div className="history-header">
+    <section className={styles.panel}>
+      <div className={styles.historyHeader}>
         <div>
           <h2>Transaction History</h2>
           <p>All your income and expenses in one place.</p>
@@ -29,13 +30,13 @@ export default function TransactionList({
       </div>
 
       {transactions.length === 0 ? (
-        <div className="empty">
-          <div className="empty-icon">↕</div>
+        <div className={styles.empty}>
+          <div className={styles.emptyIcon}>↕</div>
           <h3>No transactions found</h3>
           <p>Add a transaction to see it in your history.</p>
         </div>
       ) : (
-        <div className="table-container">
+        <div className={styles.tableContainer}>
           <table>
             <thead>
               <tr>
@@ -52,21 +53,29 @@ export default function TransactionList({
                 const isIncome = transaction.type === "Income";
                 return (
                   <tr key={transaction.id}>
-                    <td className="description">{transaction.description}</td>
+                    <td className={styles.description}>{transaction.description}</td>
                     <td>{transaction.category}</td>
                     <td>{transaction.date}</td>
                     <td>
-                      <span className={`badge ${transaction.type.toLowerCase()}`}>
+                      <span
+                        className={
+                          isIncome ? styles.incomeBadge : styles.expenseBadge
+                        }
+                      >
                         {transaction.type}
                       </span>
                     </td>
-                    <td className={isIncome ? "green" : "red"}>
+                    <td
+                      className={
+                        isIncome ? styles.incomeAmount : styles.expenseAmount
+                      }
+                    >
                       {isIncome ? "+" : "-"}
                       {formatCurrency(transaction.amount)}
                     </td>
                     <td>
                       <button
-                        className="delete-button"
+                        className={styles.deleteButton}
                         onClick={() => onDeleteTransaction(transaction.id)}
                       >
                         Delete

@@ -1,0 +1,76 @@
+.panel {
+  padding: 26px;
+  margin-bottom: 24px;
+  border: 1px solid #e4eae7;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 3px 12px #152d2410;
+}
+
+.panel h2 {
+  margin: 0 0 22px;
+  font-size: 18px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr auto;
+  gap: 12px;
+}
+
+.form input,
+.form select {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 13px;
+  border: 1px solid #dce4e0;
+  border-radius: 9px;
+  background: white;
+  color: #26332e;
+  outline: none;
+}
+
+.form input:focus,
+.form select:focus {
+  border-color: #15966a;
+  box-shadow: 0 0 0 3px #15966a18;
+}
+
+.addButton {
+  border: none;
+  border-radius: 9px;
+  padding: 12px 17px;
+  font-weight: 600;
+  background: #15966a;
+  color: white;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.addButton:hover {
+  background: #107b57;
+}
+
+@media (max-width: 1050px) {
+  .form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .addButton {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .panel {
+    padding: 18px 14px;
+  }
+
+  .form {
+    grid-template-columns: 1fr;
+  }
+
+  .addButton {
+    grid-column: auto;
+  }
+}

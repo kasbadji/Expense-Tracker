@@ -1,0 +1,158 @@
+.panel {
+  padding: 26px;
+  margin-bottom: 24px;
+  border: 1px solid #e4eae7;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 3px 12px #152d2410;
+}
+
+.historyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.historyHeader h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.historyHeader p {
+  color: #7a8783;
+  font-size: 14px;
+  margin: 8px 0 0;
+}
+
+.historyHeader select {
+  max-width: 210px;
+  width: 100%;
+  padding: 12px 13px;
+  border: 1px solid #dce4e0;
+  border-radius: 9px;
+  background: white;
+  color: #26332e;
+  outline: none;
+}
+
+.tableContainer {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+
+th {
+  padding: 15px 12px;
+  color: #75817c;
+  background: #f7f9f8;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+td {
+  padding: 17px 12px;
+  border-bottom: 1px solid #edf0ee;
+  white-space: nowrap;
+}
+
+tbody tr:hover {
+  background: #fafcfb;
+}
+
+.description {
+  font-weight: 600;
+  color: #26332e;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 9px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.incomeBadge {
+  composes: badge;
+  color: #12845d;
+  background: #e6f7ef;
+}
+
+.expenseBadge {
+  composes: badge;
+  color: #d8404b;
+  background: #ffebed;
+}
+
+.incomeAmount {
+  color: #15966a;
+}
+
+.expenseAmount {
+  color: #e34e58;
+}
+
+.deleteButton {
+  border: none;
+  border-radius: 9px;
+  padding: 7px 10px;
+  background: #fff0f0;
+  color: #d8404b;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.deleteButton:hover {
+  background: #ffdddd;
+}
+
+.empty {
+  padding: 45px 15px;
+  text-align: center;
+}
+
+.emptyIcon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 15px;
+  border-radius: 14px;
+  background: #e6f7ef;
+  color: #15966a;
+  font-size: 26px;
+}
+
+.empty h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.empty p {
+  margin: 0;
+  color: #7a8783;
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .panel {
+    padding: 18px 14px;
+  }
+
+  .historyHeader {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .historyHeader select {
+    max-width: none;
+  }
+}

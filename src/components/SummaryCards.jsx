@@ -1,4 +1,5 @@
 import { formatCurrency } from "../utils/formatters";
+import styles from "./SummaryCards.module.css";
 
 export default function SummaryCards({ transactions }) {
   const totalIncome = transactions
@@ -12,25 +13,25 @@ export default function SummaryCards({ transactions }) {
   const currentBalance = totalIncome - totalExpenses;
 
   return (
-    <section className="cards">
-      <div className="card balance">
+    <section className={styles.cards}>
+      <div className={styles.card}>
         <p>Current Balance</p>
-        <h2>{formatCurrency(currentBalance)}</h2>
+        <h2 className={styles.balanceValue}>{formatCurrency(currentBalance)}</h2>
       </div>
 
-      <div className="card income">
+      <div className={styles.card}>
         <p>Total Income</p>
-        <h2>+{formatCurrency(totalIncome)}</h2>
+        <h2 className={styles.incomeValue}>+{formatCurrency(totalIncome)}</h2>
       </div>
 
-      <div className="card expense">
+      <div className={styles.card}>
         <p>Total Expenses</p>
-        <h2>-{formatCurrency(totalExpenses)}</h2>
+        <h2 className={styles.expenseValue}>-{formatCurrency(totalExpenses)}</h2>
       </div>
 
-      <div className="card transactions">
+      <div className={styles.card}>
         <p>Transactions</p>
-        <h2>{transactions.length}</h2>
+        <h2 className={styles.transactionsValue}>{transactions.length}</h2>
       </div>
     </section>
   );
