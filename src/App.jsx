@@ -1,15 +1,18 @@
 import { useState } from "react";
 
+const categories = ["Food", "Transport", "Shopping", "Salary", "Other"];
+
 export default function App() {
   const [a, sa] = useState([]);
   const [b, sb] = useState("");
   const [c, sc] = useState("");
-  const [d, sd] = useState("Food");
-  const [e, se] = useState("All");
+  const [d, sd] = useState("Expense");
+  const [e, se] = useState("Food");
+  const [f, sf] = useState("All");
 
-  function f() {
-    if (b === "" || c === "" || isNaN(c) || Number(c) <= 0) {
-      alert("Invalid input");
+  function g() {
+    if (b.trim() === "" || c === "" || isNaN(c) || Number(c) <= 0) {
+      alert("Please enter a valid description and amount");
       return;
     }
 
@@ -17,77 +20,173 @@ export default function App() {
       id: Date.now(),
       name: b,
       amount: Number(c),
-      category: d
+      type: d,
+      category: e,
+      date: new Date().toLocaleString()
     };
 
     sa([...a, x]);
     sb("");
     sc("");
-
   }
 
-  function g(id) {
+  function h(id) {
     sa(a.filter((x) => x.id !== id));
   }
 
-  let h = 0;
+  let i = 0;
+  let j = 0;
 
-  for (let i = 0; i < a.length; i++) {
-    h = h + a[i].amount;
+  for (let k = 0; k < a.length; k++) {
+    if (a[k].type === "Income") {
+      i = i + a[k].amount;
+    } else {
+      j = j + a[k].amount;
+    }
   }
 
-  let j = a;
+  let k = i - j;
+  let l = a;
 
-  if (e !== "All") {
-    j = a.filter((x) => x.category === e);
+  if (f !== "All") {
+    l = a.filter((x) => x.category === f);
   }
 
-  return (
-  <div style={{ padding: "30px", fontFamily: "Arial" }}> <h1>Expense Tracker</h1>
+return ( 
+  <div className="app"> 
+    <header className="header"> 
+      <div> <h1>Expense Tracker</h1> 
+        <p>Manage your money and track your transactions.</p> 
+      </div> 
+    </header>
 
-    <h2>Total: ${h.toFixed(2)}</h2>
+    <main>
+      <section className="cards">
+        <div className="card balance">
+          <p>Current Balance</p>
+          <h2>{k.toFixed(2)} DZ</h2>
+        </div>
 
-    <input
-      placeholder="Expense name"
-      value={b}
-      onChange={(ev) => sb(ev.target.value)}
-    />
+        <div className="card income">
+          <p>Total Income</p>
+          <h2>+{i.toFixed(2)} DZ</h2>
+        </div>
 
-    <input
-      placeholder="Amount"
-      type="number"
-      value={c}
-      onChange={(ev) => sc(ev.target.value)}
-    />
+        <div className="card expense">
+          <p>Total Expenses</p>
+          <h2>-{j.toFixed(2)} DZ</h2>
+        </div>
 
-    <select value={d} onChange={(ev) => sd(ev.target.value)}>
-      <option>Food</option>
-      <option>Transport</option>
-      <option>Shopping</option>
-      <option>Other</option>
-    </select>
+        <div className="card transactions">
+          <p>Transactions</p>
+          <h2>{a.length}</h2>
+        </div>
+      </section>
 
-    <button onClick={f}>Add Expense</button>
+      <section className="panel">
+        <h2>Add Transaction</h2>
 
-    <br />
-    <br />
+        <div className="form">
+          <input
+            placeholder="Description"
+            value={b}
+            onChange={(ev) => sb(ev.target.value)}
+          />
 
-    <select value={e} onChange={(ev) => se(ev.target.value)}>
-      <option>All</option>
-      <option>Food</option>
-      <option>Transport</option>
-      <option>Shopping</option>
-      <option>Other</option>
-    </select>
+          <input
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="Amount (DZ)"
+            value={c}
+            onChange={(ev) => sc(ev.target.value)}
+          />
 
-    <ul>
-      {j.map((x) => (
-        <li key={x.id}>
-          {x.name} - ${x.amount.toFixed(2)} - {x.category}
-          <button onClick={() => g(x.id)}>Delete</button>
-        </li>
-      ))}
-    </ul>
+          <select value={d} onChange={(ev) => sd(ev.target.value)}>
+            <option value="Expense">Expense (-)</option>
+            <option value="Income">Income (+)</option>
+          </select>
+
+          <select value={e} onChange={(ev) => se(ev.target.value)}>
+            {categories.map((x) => (
+              <option key={x} value={x}>{x}</option>
+            ))}
+          </select>
+
+          <button className="add-button" onClick={g}>
+            + Add
+          </button>
+        </div>
+      </section>
+
+      <section className="panel">
+        <div className="history-header">
+          <div>
+            <h2>Transaction History</h2>
+            <p>All your income and expenses in one place.</p>
+          </div>
+
+          <select value={f} onChange={(ev) => sf(ev.target.value)}>
+            <option value="All">All Categories</option>
+            {categories.map((x) => (
+              <option key={x} value={x}>{x}</option>
+            ))}
+          </select>
+        </div>
+
+        {l.length === 0 ? (
+          <div className="empty">
+            <div className="empty-icon">↕</div>
+            <h3>No transactions found</h3>
+            <p>Add a transaction to see it in your history.</p>
+          </div>
+        ) : (
+          <div className="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Description</th>
+                  <th>Category</th>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {l.map((x) => (
+                  <tr key={x.id}>
+                    <td className="description">{x.name}</td>
+                    <td>{x.category}</td>
+                    <td>{x.date}</td>
+                    <td>
+                      <span className={"badge " + x.type.toLowerCase()}>
+                        {x.type}
+                      </span>
+                    </td>
+                    <td className={x.type === "Income" ? "green" : "red"}>
+                      {x.type === "Income" ? "+" : "-"}
+                      {x.amount.toFixed(2)} DZ
+                    </td>
+                    <td>
+                      <button
+                        className="delete-button"
+                        onClick={() => h(x.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+    </main>
+
+    <footer>Poor Code Version</footer>
   </div>
+
   );
 }
