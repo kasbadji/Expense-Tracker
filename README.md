@@ -31,13 +31,16 @@ This repository contains two distinct branches allowing a side-by-side compariso
 
 ### 3. Calculation Logic
 * Poor Code: Uses a manual, imperative for loop to accumulate financial totals:
+```
   let i = 0, j = 0;
   for (let k = 0; k < a.length; k++) { ... }
+```
 * Clean Code: Declarative approach leveraging modern higher-order array methods (.filter(), .reduce()):
+```
   const totalIncome = transactions
     .filter((t) => t.type === "Income")
     .reduce((sum, t) => sum + t.amount, 0);
-
+```
 ### 4. Styles & CSS Modularity
 * Poor Code: Monolithic global CSS file susceptible to selector conflicts and class naming collisions.
 * Clean Code: Style encapsulation using CSS Modules (*.module.css) co-located with each component.
