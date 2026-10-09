@@ -10,7 +10,7 @@ This repository contains two distinct branches allowing a side-by-side compariso
 
 | Branch | Description |
 | :--- | :--- |
-| poor-code / main | Monolithic Version: All code, state management, and UI rendering squeezed into a single App.jsx file. Cryptic naming and imperative logic. |
+| poor-code | Monolithic Version: All code, state management, and UI rendering squeezed into a single App.jsx file. Cryptic naming and imperative logic. |
 | clean-code | Refactored Version: Modular components (CSS Modules), Single Responsibility Principle (SRP), utility helpers, and explicit naming. |
 
 ---
