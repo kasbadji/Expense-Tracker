@@ -10,7 +10,7 @@ Ce dépôt comporte deux branches distinctes permettant de comparer côte à cô
 
 | Branche | Description |
 | :--- | :--- |
-| **`poor-code`** / **`main`** | **Version Monolithique :** Tout le code, la logique d'état et le rendu sont regroupés dans un unique fichier `App.jsx`. Nommage cryptique et logique impérative. |
+| **`poor-code`** | **Version Monolithique :** Tout le code, la logique d'état et le rendu sont regroupés dans un unique fichier `App.jsx`. Nommage cryptique et logique impérative. |
 | **`clean-code`** | **Version Refactorisée :** Composants modulaires (CSS Modules), séparation des responsabilités (SRP), helpers utilitaires et nommage explicite. |
 
 ---
