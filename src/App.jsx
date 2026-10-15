@@ -3,29 +3,37 @@ import { useState } from "react";
 const categories = ["Food", "Transport", "Shopping", "Salary", "Other"];
 
 export default function App() {
+  // State for transaction list
   const [a, sa] = useState([]);
+  // State for description input
   const [b, sb] = useState("");
+  // State for amount input
   const [c, sc] = useState("");
+  // State for type (Expense or Income)
   const [d, sd] = useState("Expense");
+  // State for category selected
   const [e, se] = useState("Food");
+  // State for filter dropdown
   const [f, sf] = useState("All");
-
+  // Function to add a transaction to the list
   function g() {
+    // Check if description is empty or amount is invalid
     if (b.trim() === "" || c === "" || isNaN(c) || Number(c) <= 0) {
       alert("Please enter a valid description and amount");
-      return;
+      return; // Exit function early if invalid
     }
-
+    // Create transaction object
     let x = {
-      id: Date.now(),
+      id: Date.now(), // Generate unique ID using current timestamp
       name: b,
-      amount: Number(c),
+      amount: Number(c), // Convert string to number
       type: d,
       category: e,
-      date: new Date().toLocaleString()
+      date: new Date().toLocaleString() // Format current date
     };
-
+    // Append new transaction to array
     sa([...a, x]);
+    // Reset input fields back to empty
     sb("");
     sc("");
   }
