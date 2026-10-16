@@ -1,7 +1,5 @@
 import { useState } from "react";
-
 const categories = ["Food", "Transport", "Shopping", "Salary", "Other"];
-
 export default function App() {
   // State for transaction list
   const [a, sa] = useState([]);
@@ -37,14 +35,11 @@ export default function App() {
     sb("");
     sc("");
   }
-
   function h(id) {
     sa(a.filter((x) => x.id !== id));
   }
-
   let i = 0;
   let j = 0;
-
   for (let k = 0; k < a.length; k++) {
     if (a[k].type === "Income") {
       i = i + a[k].amount;
@@ -52,14 +47,11 @@ export default function App() {
       j = j + a[k].amount;
     }
   }
-
   let k = i - j;
   let l = a;
-
   if (f !== "All") {
     l = a.filter((x) => x.category === f);
   }
-
 return ( 
   <div className="app"> 
     <header className="header"> 
